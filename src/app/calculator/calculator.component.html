@@ -1,0 +1,47 @@
+<div class="container-card">
+
+
+
+
+  <button style="width: max-content;align-self: flex-end;" mat-raised-button (click)="newCalculationCard()">NOVO CARTÃO</button>
+
+  <div class="card-list">
+
+
+
+
+    <div *ngFor="let item of cards;let i = index">
+
+
+      <app-calculation-card  [calculation]="item" [index]="i" ></app-calculation-card>
+
+
+
+    </div>
+
+
+
+
+
+
+
+
+
+
+
+
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+</div>

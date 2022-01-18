@@ -1,0 +1,14 @@
+.container-card{
+  padding: 36px 19px;
+  display: flex;
+  flex-direction: column;
+}
+
+
+.card-list{
+  display: flex;
+  justify-content: start;
+  flex-wrap: wrap;
+}
+
+

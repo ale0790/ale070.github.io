@@ -1,0 +1,80 @@
+.card-calculation {
+  width: 400px;
+  background: white;
+  margin-right: 25px;
+  margin-bottom: 25px;
+  border-radius: 10px;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.07),
+    0 2px 4px rgba(3, 3, 3, 0.07),
+    0 4px 8px rgba(0, 0, 0, 0.07),
+    0 8px 16px rgba(0, 0, 0, 0.07),
+    0 16px 32px rgba(0, 0, 0, 0.07),
+    0 32px 64px rgba(0, 0, 0, 0.07);
+  box-sizing: border-box;
+  padding: 20px 10px;
+}
+
+
+.botao-editar {}
+
+
+.box-header {
+
+  display: flex;
+  justify-content: space-between;
+  margin-right: 25px;
+  margin-bottom: 10px;
+}
+
+h2 {
+  margin: 0;
+  font-size: 17px;
+}
+
+.box {
+  display: flex;
+  flex-direction: column;
+}
+
+
+.row {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  margin-bottom: 20px;
+  align-items: baseline;
+}
+
+
+.row-text {
+
+  font-size: 14px;
+  font-weight: 500;
+  letter-spacing: 0.4px;
+
+}
+
+.row-value {
+  width: 69px;
+  display: flex;
+  justify-content: flex-end;
+  align-items: flex-end;
+  font-size: 14px;
+  padding: 4px;
+  box-sizing: border-box;
+  border-radius: 5px;
+}
+
+
+.result {
+
+  background: #53df42;
+
+}
+
+
+
+.input {
+
+  background-color: yellow;
+}
