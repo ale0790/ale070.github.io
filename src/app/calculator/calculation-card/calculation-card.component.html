@@ -1,30 +1,48 @@
 <div class="box" *ngIf="calculation">
 
-  <div class="box-header" >
-    <h2>{{title}}</h2>
-    <button mat-flat-button color="accent"  *ngIf="!edit" class="botao-editar" (click)="editCard()" >EDITAR</button>
-    <button mat-flat-button  style="background: green;color: white;" *ngIf="edit" class="botao-editar" (click)="saveCard()" >SALVAR</button>
+  <div class="box-header">
+
+    <div class="box-inputs-team">
+
+      <mat-form-field appearance="outline">
+        <mat-label>Nome do time</mat-label>
+        <input matInput #teamOne type="text" [(ngModel)]="calculation.teamOne">
+      </mat-form-field>
+
+      <mat-icon class="mat-x"> close </mat-icon>
+
+
+      <mat-form-field appearance="outline">
+        <mat-label>Nome do time</mat-label>
+        <input matInput #teamTwo type="text" [(ngModel)]="calculation.teamTwo">
+      </mat-form-field>
+
+    </div>
+    <button mat-flat-button style="background: green;color: white;" *ngIf="edit" class="botao-editar"
+    (click)="saveCard()">SALVAR</button>
   </div>
 
   <div class="card-calculation">
 
     <div class="row">
-      <span class="row-text">ODD Obtida Time 1</span>
+      <span class="row-text">ODD Obtida <b class="teamone">{{calculation.teamOne}}</b></span>
       <div class="row-value input">
-        {{calculation.oddTeamOne}}
+
+        <input #oddTeamOne type="number" [(ngModel)]="calculation.oddTeamOne">
+
       </div>
     </div>
     <div class="row">
-      <span class="row-text">Valor Aposta Time 1</span>
+      <span class="row-text">Valor Aposta <b class="teamone">{{calculation.teamOne}}</b></span>
 
       <div class="row-value input">
-        {{calculation.valueBetTeamOne | number : pipe(calculation.valueBetTeamOne) }}
+        <input #betTeamOne type="number" [(ngModel)]="calculation.valueBetTeamOne">
       </div>
 
     </div>
     <div class="row">
 
-      <span class="row-text">ODD Miníma Time 2 para Cash Out</span>
+      <span class="row-text">ODD Miníma <b class="teamtwo">{{calculation.teamTwo}}</b> para Cash Out</span>
 
       <div class="row-value result">
 
@@ -36,10 +54,10 @@
     </div>
     <div class="row">
 
-      <span class="row-text">Aposta Miníma Time 2 para Cash Out</span>
+      <span class="row-text">Aposta Miníma <b class="teamtwo">{{calculation.teamTwo}}</b> para Cash Out</span>
 
       <div class="row-value result">
-          {{valorMinimoApostaTimeDois | number: pipe(valorMinimoApostaTimeDois)}}
+        {{valorMinimoApostaTimeDois | number: pipe(valorMinimoApostaTimeDois)}}
       </div>
 
     </div>
@@ -47,7 +65,7 @@
     <mat-divider></mat-divider>
 
     <div class="row">
-      <span class="row-text ">Valor Aposta Time 1</span>
+      <span class="row-text ">Valor Aposta <b class="teamone">{{calculation.teamOne}}</b></span>
 
       <div class="row-value input">
         {{calculation.valueBetTeamOne | number : pipe(calculation.valueBetTeamOne )}}
@@ -55,19 +73,19 @@
 
     </div>
     <div class="row">
-      <span class="row-text">Ganho Aposta individual Time 1</span>
+      <span class="row-text">Ganho individual <b class="teamone">{{calculation.teamOne}}</b></span>
 
-      <div class="row-value">
+      <div [class]="'row-value ' + getValueClass(ganhoIndividualTimeUm)">
 
         {{ganhoIndividualTimeUm | number : pipe(ganhoIndividualTimeUm)}}
       </div>
 
     </div>
     <div class="row">
-      <span class="row-text">ODD time 2</span>
+      <span class="row-text">ODD <b class="teamtwo">{{calculation.teamTwo}}</b></span>
 
       <div class="row-value input">
-        {{calculation.oddTeamTwo}}
+        <input #oddTeamTwo type="number" [(ngModel)]="calculation.oddTeamTwo">
       </div>
 
     </div>
@@ -75,10 +93,10 @@
 
 
     <div class="row">
-      <span class="row-text">Valor Aposta Time 2</span>
+      <span class="row-text">Valor Aposta <b class="teamtwo">{{calculation.teamTwo}}</b></span>
 
       <div class="row-value input">
-        {{calculation.valueBetTeamTwo | number : pipe(calculation.valueBetTeamTwo)}}
+        <input #betTeamTwo type="number" [(ngModel)]="calculation.valueBetTeamTwo">
       </div>
 
     </div>
@@ -86,9 +104,9 @@
 
     <div class="row">
 
-      <span class="row-text">Ganho Aposta individual Time 2</span>
+      <span class="row-text">Ganho individual <b class="teamtwo">{{calculation.teamTwo}}</b></span>
 
-      <div class="row-value">
+      <div [class]="'row-value ' + getValueClass(ganhoIndividualTimeDois)">
 
         {{ganhoIndividualTimeDois | number : pipe(ganhoIndividualTimeDois)}}
       </div>
@@ -108,9 +126,9 @@
 
 
     <div class="row">
-      <span class="row-text">Ganho Final se Time 1 é Vencedor</span>
+      <span class="row-text ">Ganho Final se <b class="teamone">{{calculation.teamOne}}</b> é Vencedor</span>
 
-      <div class="row-value result">
+      <div [class]="'row-value  ' + getValueClass(ganhoSeTimeUmVencer)">
 
         {{ganhoSeTimeUmVencer | number : pipe(ganhoSeTimeUmVencer)}}
       </div>
@@ -119,13 +137,22 @@
 
 
     <div class="row">
-      <span class="row-text">Ganho Final se Time 2 é Vencedor</span>
+      <span class="row-text">Ganho Final se <b class="teamtwo">{{calculation.teamTwo}}</b> é Vencedor</span>
 
-      <div class="row-value result">
+      <div [class]="'row-value  ' + getValueClass(ganhoSeTimeDoisVencer)">
         {{ganhoSeTimeDoisVencer | number : pipe(ganhoSeTimeDoisVencer)}}
       </div>
 
     </div>
+
+
+
+    <div class="buttonDelete">
+      <button mat-flat-button color="warn" (click)="removeCard()">
+        REMOVER
+      </button>
+    </div>
+
   </div>
 
 </div>

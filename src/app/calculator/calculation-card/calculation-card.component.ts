@@ -1,4 +1,6 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { AfterViewInit, Component, ElementRef, Input, ViewChild } from '@angular/core';
+import { Observable, of, Subject, fromEvent, Subscription } from 'rxjs';
+import { map, filter, debounceTime, distinctUntilChanged } from 'rxjs/operators';
 import { CalculationCard } from 'src/app/model/model';
 
 @Component({
@@ -6,7 +8,7 @@ import { CalculationCard } from 'src/app/model/model';
   templateUrl: './calculation-card.component.html',
   styleUrls: ['./calculation-card.component.css']
 })
-export class CalculationCardComponent implements OnInit {
+export class CalculationCardComponent implements AfterViewInit {
 
 
 
@@ -14,10 +16,37 @@ export class CalculationCardComponent implements OnInit {
 
   @Input() index: number
 
-  @Input() title: string = "Team one x Team two"
+  @Input() removeFunction: (item: CalculationCard) => void;
+
+  @Input() saveListFunction: () => void;
+
+  @ViewChild('teamOne') teamOneElRef: ElementRef;
+
+  @ViewChild('teamTwo') teamTwoElRef: ElementRef;
+
+  @ViewChild('oddTeamOne') oddTeamOneElRef: ElementRef;
+
+  @ViewChild('oddTeamTwo') oddTeamTwoElRef: ElementRef;
+
+  @ViewChild('betTeamOne') valueBetTeamOneElRef: ElementRef;
+
+  @ViewChild('betTeamTwo') valueBetTeamTwoElRef: ElementRef;
+
+
+
+  teamOne: Subscription;
+
+  teamTwo: Subscription;
+
+  oddTeamOne: Subscription;
+
+  oddTeamTwo: Subscription;
+
+  valueBetTeamTwo: Subscription;
+
+  valueBetTeamOne: Subscription;
 
   edit: boolean;
-
 
 
 
@@ -33,23 +62,61 @@ export class CalculationCardComponent implements OnInit {
 
   }
 
-  ngOnInit(): void {
+  ngAfterViewInit(): void {
 
     this.calculate();
+    this.saveListFunction();
+
+    this.teamOne = fromEvent(this.teamOneElRef.nativeElement, 'keyup').pipe(debounceTime(300)).subscribe(value =>
+      this.calculate()
+    );
+
+    this.teamTwo = fromEvent(this.teamTwoElRef.nativeElement, 'keyup').pipe(debounceTime(300)).subscribe(value =>
+      this.calculate()
+    );
+
+    this.oddTeamOne = fromEvent(this.oddTeamOneElRef.nativeElement, 'keyup').pipe(debounceTime(300)).subscribe(value =>
+
+
+      this.calculate()
+    );
+
+    this.oddTeamTwo= fromEvent(this.oddTeamTwoElRef.nativeElement, 'keyup').pipe(debounceTime(300)).subscribe(value =>
+      this.calculate()
+    );
+
+    this.valueBetTeamTwo= fromEvent(this.valueBetTeamTwoElRef.nativeElement, 'keyup').pipe(debounceTime(300)).subscribe(value =>
+      this.calculate()
+    );
+
+    this.valueBetTeamOne= fromEvent(this.valueBetTeamOneElRef.nativeElement, 'keyup').pipe(debounceTime(300)).subscribe(value =>
+      this.calculate()
+    );
 
   }
 
 
+  resetTeamNameTwo() {
 
+    this.calculation.teamTwo = 'Time dois';
+    this.saveListFunction();
+
+  }
+  resetTeamNameOne() {
+
+    this.calculation.teamOne = 'Time um';
+    this.saveListFunction();
+
+  }
 
   pipe(value: number) {
 
-    return value > 999 ?  '1.0-0' : '1.0-2';
+    return value > 999 ? '1.0-0' : '1.0-2';
   }
 
 
   calculate() {
-
+    console.log("aaaaaaaaaaaaa")
 
     this.ganhoIndividualTimeUm = (this.calculation.oddTeamOne * this.calculation?.valueBetTeamOne) - this.calculation?.valueBetTeamOne;
 
@@ -65,23 +132,53 @@ export class CalculationCardComponent implements OnInit {
 
     this.ganhoSeTimeDoisVencer = this.calculation.valueBetTeamTwo + this.ganhoIndividualTimeDois - this.totalAposta;
 
+    this.saveListFunction();
+
+
   }
 
 
 
-  saveCard(){
+  saveCard() {
     console.log("a");
 
     this.edit = false;
 
   }
 
-  editCard(){
+  removeCard() {
 
-    console.log("b");
+    this.removeFunction(this.calculation);
 
-    this.edit = true;
   }
 
+
+
+  ngOnDestroy() {
+    this.teamOne.unsubscribe();
+    this.teamTwo.unsubscribe();
+
+    this.oddTeamOne.unsubscribe();
+    this.oddTeamTwo.unsubscribe();
+
+    this.valueBetTeamOne.unsubscribe();
+    this.valueBetTeamTwo.unsubscribe();
+  }
+
+
+  getValueClass(value: number){
+
+
+    if(value > 0){
+      return "greenvalue"
+    }
+    if(value == 0){
+      return "bluevalue"
+    }
+    if(value < 0){
+      return "redvalue"
+    }
+
+  }
 
 }

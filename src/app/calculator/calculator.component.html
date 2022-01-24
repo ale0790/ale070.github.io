@@ -13,7 +13,7 @@
     <div *ngFor="let item of cards;let i = index">
 
 
-      <app-calculation-card  [calculation]="item" [index]="i" ></app-calculation-card>
+      <app-calculation-card  [saveListFunction]="addListToStorage" [removeFunction]="removeCard" [calculation]="item" [index]="i" ></app-calculation-card>
 
 
 

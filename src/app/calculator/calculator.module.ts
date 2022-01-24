@@ -4,6 +4,7 @@ import { CustomMaterialModule } from '../custom-material/custom-material.module'
 import { CalculatorComponent } from './calculator.component';
 import { CalculationCardComponent } from './calculation-card/calculation-card.component';
 import { NgxSkeletonLoaderModule } from 'ngx-skeleton-loader';
+import { FormsModule } from '@angular/forms';
 
 
 
@@ -14,9 +15,9 @@ import { NgxSkeletonLoaderModule } from 'ngx-skeleton-loader';
   ],
   imports: [
     CommonModule,
+    FormsModule,
     CustomMaterialModule,
-    NgxSkeletonLoaderModule
-
+    NgxSkeletonLoaderModule,
   ]
 })
 export class CalculatorModule { }

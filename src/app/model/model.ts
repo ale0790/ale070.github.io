@@ -7,4 +7,7 @@ export class CalculationCard {
   oddTeamTwo: number;
   valueBetTeamTwo: number;
 
+  teamOne: string ;
+  teamTwo: string ;
+
 }

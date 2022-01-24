@@ -1,8 +1,16 @@
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+input[type=number] {
+  -moz-appearance: textfield;
+}
+
 .card-calculation {
   width: 400px;
   background: white;
-  margin-right: 25px;
-  margin-bottom: 25px;
   border-radius: 10px;
   box-shadow: 0 1px 2px rgba(0, 0, 0, 0.07),
     0 2px 4px rgba(3, 3, 3, 0.07),
@@ -11,29 +19,74 @@
     0 16px 32px rgba(0, 0, 0, 0.07),
     0 32px 64px rgba(0, 0, 0, 0.07);
   box-sizing: border-box;
-  padding: 20px 10px;
+  padding: 20px 20px;
+  position: relative;
+}
+
+.box-inputs-team {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+}
+
+.mat-x {
+  padding: 0;
+  font-weight: 800;
+  font-size: 21px;
+  margin-bottom: 19px;
+
 }
 
 
-.botao-editar {}
+.box-inputs-team>.mat-form-field {
+  width: 42%;
+}
+
+
+.buttonDelete {
+  display: flex;
+  justify-content: flex-start;
+}
 
 
 .box-header {
-
   display: flex;
   justify-content: space-between;
-  margin-right: 25px;
-  margin-bottom: 10px;
+}
+
+
+.input>input {
+  width: 100%;
+  padding: 4px;
+  border-radius: 4px;
+  border: 1px solid black;
+  text-align: right;
+  font-size: 15px;
 }
 
 h2 {
   margin: 0;
+  width: 10%;
   font-size: 17px;
+}
+
+.teamtwo {
+
+  color: orange;
+}
+
+.teamone {
+  color: blue;
 }
 
 .box {
   display: flex;
   flex-direction: column;
+  width: 400px;
+  margin-right: 25px;
+  margin-bottom: 25px;
 }
 
 
@@ -41,7 +94,7 @@ h2 {
   display: flex;
   justify-content: space-between;
   width: 100%;
-  margin-bottom: 20px;
+  margin-bottom: 17px;
   align-items: baseline;
 }
 
@@ -63,6 +116,7 @@ h2 {
   padding: 4px;
   box-sizing: border-box;
   border-radius: 5px;
+  font-size: 15px;
 }
 
 
@@ -73,8 +127,18 @@ h2 {
 }
 
 
+.greenvalue {
+  font-weight: 500;
+  color: green;
+}
 
-.input {
+.redvalue {
+  font-weight: 500;
+  color: red;
+}
 
-  background-color: yellow;
+.bluevalue {
+  font-weight: 500;
+  color: blue;
+
 }
