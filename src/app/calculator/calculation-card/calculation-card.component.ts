@@ -46,17 +46,14 @@ export class CalculationCardComponent implements AfterViewInit {
 
   valueBetTeamOne: Subscription;
 
-  edit: boolean;
 
-
-
-  oddMinimaTimeDois: number;
-  valorMinimoApostaTimeDois: number;
-  ganhoIndividualTimeUm: number;
-  ganhoIndividualTimeDois: number;
-  ganhoSeTimeUmVencer: number;
-  ganhoSeTimeDoisVencer: number;
-  totalAposta: number;
+  oddMinimaTimeDois: number = 0;
+  valorMinimoApostaTimeDois: number = 0;
+  ganhoIndividualTimeUm: number = 0;
+  ganhoIndividualTimeDois: number = 0;
+  ganhoSeTimeUmVencer: number = 0;
+  ganhoSeTimeDoisVencer: number = 0;
+  totalAposta: number = 0;
 
   constructor() {
 
@@ -65,7 +62,6 @@ export class CalculationCardComponent implements AfterViewInit {
   ngAfterViewInit(): void {
 
     this.calculate();
-    this.saveListFunction();
 
     this.teamOne = fromEvent(this.teamOneElRef.nativeElement, 'keyup').pipe(debounceTime(300)).subscribe(value =>
       this.calculate()
@@ -116,7 +112,7 @@ export class CalculationCardComponent implements AfterViewInit {
 
 
   calculate() {
-    console.log("aaaaaaaaaaaaa")
+
 
     this.ganhoIndividualTimeUm = (this.calculation.oddTeamOne * this.calculation?.valueBetTeamOne) - this.calculation?.valueBetTeamOne;
 
@@ -134,17 +130,8 @@ export class CalculationCardComponent implements AfterViewInit {
 
     this.saveListFunction();
 
-
   }
 
-
-
-  saveCard() {
-    console.log("a");
-
-    this.edit = false;
-
-  }
 
   removeCard() {
 

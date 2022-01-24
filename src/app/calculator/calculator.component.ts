@@ -57,10 +57,10 @@ export class CalculatorComponent implements OnInit {
     let item = new CalculationCard();
 
 
-    item.oddTeamOne = 2.37;
-    item.oddTeamTwo = 3.9;
-    item.valueBetTeamOne = 2500;
-    item.valueBetTeamTwo = 2100;
+    item.oddTeamOne = 0;
+    item.oddTeamTwo = 0;
+    item.valueBetTeamOne = 0;
+    item.valueBetTeamTwo = 0;
 
     item.teamOne = "Team one";
     item.teamTwo = "Team two";

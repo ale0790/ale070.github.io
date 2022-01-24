@@ -3,31 +3,16 @@
 
 
 
-  <button style="width: max-content;align-self: flex-end;" mat-raised-button (click)="newCalculationCard()">NOVO CARTÃO</button>
+  <button style="width: max-content;align-self: flex-end;" color="accent" mat-raised-button (click)="newCalculationCard()">NOVO CARTÃO</button>
 
   <div class="card-list">
-
-
-
 
     <div *ngFor="let item of cards;let i = index">
 
 
       <app-calculation-card  [saveListFunction]="addListToStorage" [removeFunction]="removeCard" [calculation]="item" [index]="i" ></app-calculation-card>
 
-
-
     </div>
-
-
-
-
-
-
-
-
-
-
 
 
   </div>

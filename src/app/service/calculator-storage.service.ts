@@ -13,12 +13,12 @@ export class CalculatorStorageService {
   }
 
   setList(list: CalculationCard[]) {
-    window.sessionStorage.setItem(KEY_LIST, JSON.stringify(list));
+    window.localStorage.setItem(KEY_LIST, JSON.stringify(list));
   }
 
 
   getList() {
-    const list: CalculationCard[] = JSON.parse(window.sessionStorage.getItem(KEY_LIST) || '{[]}');
+    const list: CalculationCard[] = JSON.parse(window.localStorage.getItem(KEY_LIST) || '{[]}');
 
     if (!list) {
       return []
