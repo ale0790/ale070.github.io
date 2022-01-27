@@ -1,24 +1,19 @@
-import { AfterViewInit, Component, ElementRef, Input, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, ElementRef, Input, OnInit, ViewChild } from '@angular/core';
+import { Title } from '@angular/platform-browser';
 import { Observable, of, Subject, fromEvent, Subscription } from 'rxjs';
 import { map, filter, debounceTime, distinctUntilChanged } from 'rxjs/operators';
-import { CalculationCard } from 'src/app/model/model';
+import { CalculationCard, SimulacaoOdd } from 'src/app/model/model';
 
 @Component({
   selector: 'app-calculation-card',
   templateUrl: './calculation-card.component.html',
   styleUrls: ['./calculation-card.component.css']
 })
-export class CalculationCardComponent implements AfterViewInit {
+export class CalculationCardComponent implements AfterViewInit, OnInit {
 
 
 
   @Input() calculation: CalculationCard
-
-  @Input() index: number
-
-  @Input() removeFunction: (item: CalculationCard) => void;
-
-  @Input() saveListFunction: () => void;
 
   @ViewChild('teamOne') teamOneElRef: ElementRef;
 
@@ -31,7 +26,6 @@ export class CalculationCardComponent implements AfterViewInit {
   @ViewChild('betTeamOne') valueBetTeamOneElRef: ElementRef;
 
   @ViewChild('betTeamTwo') valueBetTeamTwoElRef: ElementRef;
-
 
 
   teamOne: Subscription;
@@ -55,20 +49,41 @@ export class CalculationCardComponent implements AfterViewInit {
   ganhoSeTimeDoisVencer: number = 0;
   totalAposta: number = 0;
 
-  constructor() {
 
+  multiplicadorOdd: number = 0.25;
+
+  rowsOdd: number = 7;
+
+
+  listOddSimulacao: SimulacaoOdd[];
+
+
+  constructor(private titleService: Title) {
+
+
+
+  }
+  ngOnInit(): void {
+    this.buildSimulacaoOdd();
   }
 
   ngAfterViewInit(): void {
 
     this.calculate();
 
-    this.teamOne = fromEvent(this.teamOneElRef.nativeElement, 'keyup').pipe(debounceTime(300)).subscribe(value =>
+    this.teamOne = fromEvent(this.teamOneElRef.nativeElement, 'keyup').pipe(debounceTime(300)).subscribe(value => {
       this.calculate()
+      this.buildTitle();
+    }
     );
 
-    this.teamTwo = fromEvent(this.teamTwoElRef.nativeElement, 'keyup').pipe(debounceTime(300)).subscribe(value =>
+    this.teamTwo = fromEvent(this.teamTwoElRef.nativeElement, 'keyup').pipe(debounceTime(300)).subscribe(value => {
+
       this.calculate()
+      this.buildTitle()
+
+
+    }
     );
 
     this.oddTeamOne = fromEvent(this.oddTeamOneElRef.nativeElement, 'keyup').pipe(debounceTime(300)).subscribe(value =>
@@ -77,41 +92,67 @@ export class CalculationCardComponent implements AfterViewInit {
       this.calculate()
     );
 
-    this.oddTeamTwo= fromEvent(this.oddTeamTwoElRef.nativeElement, 'keyup').pipe(debounceTime(300)).subscribe(value =>
+    this.oddTeamTwo = fromEvent(this.oddTeamTwoElRef.nativeElement, 'keyup').pipe(debounceTime(300)).subscribe(value => {
+      this.calculate()
+
+    }
+    );
+
+    this.valueBetTeamTwo = fromEvent(this.valueBetTeamTwoElRef.nativeElement, 'keyup').pipe(debounceTime(300)).subscribe(value => {
+      this.calculate()
+
+    }
+    );
+
+    this.valueBetTeamOne = fromEvent(this.valueBetTeamOneElRef.nativeElement, 'keyup').pipe(debounceTime(300)).subscribe(value =>
       this.calculate()
     );
 
-    this.valueBetTeamTwo= fromEvent(this.valueBetTeamTwoElRef.nativeElement, 'keyup').pipe(debounceTime(300)).subscribe(value =>
-      this.calculate()
-    );
-
-    this.valueBetTeamOne= fromEvent(this.valueBetTeamOneElRef.nativeElement, 'keyup').pipe(debounceTime(300)).subscribe(value =>
-      this.calculate()
-    );
-
+    this.buildTitle();
   }
 
 
-  resetTeamNameTwo() {
+  buildTitle() {
+    this.titleService.setTitle(this.calculation?.teamOne.toLocaleUpperCase() + ' vs ' + this.calculation?.teamTwo.toLocaleUpperCase())
+  }
 
-    this.calculation.teamTwo = 'Time dois';
-    this.saveListFunction();
+
+  buildSimulacaoOdd() {
+
+
+    this.listOddSimulacao = [];
+
+    let item = null;
+
+    var odd = 1;
+
+
+    for (var i = 0; i < this.rowsOdd; i++) {
+
+      odd = odd + this.multiplicadorOdd;
+
+      item = new SimulacaoOdd();
+
+      item.oddTeamTwo = odd;
+
+      item.teamOneWin = this.calculation.valueBetTeamOne + ((odd * this.calculation.valueBetTeamOne) - this.calculation.valueBetTeamOne) - this.totalAposta;
+
+      item.teamTwoWin = this.calculation.valueBetTeamTwo + ((odd * this.calculation.valueBetTeamTwo) - this.calculation.valueBetTeamOne) - this.totalAposta;
+
+
+      this.listOddSimulacao.push(item);
+    }
+
 
   }
-  resetTeamNameOne() {
 
-    this.calculation.teamOne = 'Time um';
-    this.saveListFunction();
-
-  }
 
   pipe(value: number) {
-
     return value > 999 ? '1.0-0' : '1.0-2';
   }
 
 
-  calculate() {
+  private calculate() {
 
 
     this.ganhoIndividualTimeUm = (this.calculation.oddTeamOne * this.calculation?.valueBetTeamOne) - this.calculation?.valueBetTeamOne;
@@ -128,17 +169,9 @@ export class CalculationCardComponent implements AfterViewInit {
 
     this.ganhoSeTimeDoisVencer = this.calculation.valueBetTeamTwo + this.ganhoIndividualTimeDois - this.totalAposta;
 
-    this.saveListFunction();
+    this.buildSimulacaoOdd();
 
   }
-
-
-  removeCard() {
-
-    this.removeFunction(this.calculation);
-
-  }
-
 
 
   ngOnDestroy() {
@@ -153,16 +186,16 @@ export class CalculationCardComponent implements AfterViewInit {
   }
 
 
-  getValueClass(value: number){
+  getValueClass(value: number) {
 
 
-    if(value > 0){
+    if (value > 0) {
       return "greenvalue"
     }
-    if(value == 0){
+    if (value == 0) {
       return "bluevalue"
     }
-    if(value < 0){
+    if (value < 0) {
       return "redvalue"
     }
 

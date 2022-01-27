@@ -142,3 +142,65 @@ h2 {
   color: blue;
 
 }
+
+
+.container-card {
+  padding: 36px 19px;
+  display: flex;
+  flex-direction: row;
+}
+
+
+.box-table {
+  width: calc(100% - 400px);
+}
+
+
+.table-body {
+  display: flex;
+  margin-top: 20px;
+  flex-direction: column;
+}
+
+.row-table {
+  display: flex;
+  justify-content: space-between;
+  margin: 0 -20px;
+}
+
+.row-table>div {
+  text-align: center;
+  flex: 1;
+  border: 1px solid black;
+  font-size: 18px;
+  font-weight: 500;
+  padding: 5px 0;
+  border-top: inset;
+}
+
+.row-header {
+  display: flex;
+  justify-content: space-between;
+  font-size: 15px;
+  font-weight: 500;
+  margin: -20px;
+}
+
+.row-header>div {
+  flex: 1;
+
+  text-align: center;
+  padding: 9px 20px;
+}
+
+.table-odd {
+  color: black;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.07),
+    0 2px 4px rgba(3, 3, 3, 0.07),
+    0 4px 8px rgba(0, 0, 0, 0.07),
+    0 8px 16px rgba(0, 0, 0, 0.07),
+    0 16px 32px rgba(0, 0, 0, 0.07),
+    0 32px 64px rgba(0, 0, 0, 0.07);
+  box-sizing: border-box;
+  padding: 20px 20px;
+}

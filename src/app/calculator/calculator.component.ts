@@ -12,7 +12,7 @@ export class CalculatorComponent implements OnInit {
 
 
 
-  cards: CalculationCard[] = [];
+  card: CalculationCard;
 
   newCard: CalculationCard;
 
@@ -20,37 +20,9 @@ export class CalculatorComponent implements OnInit {
 
 
   ngOnInit(): void {
-    this.cards = this._calculatorService.getList();
+    this.card = this.createCalculationCard();
   }
 
-
-  newCalculationCard() {
-
-    this.cards.push(this.createCalculationCard());
-
-    this.addListToStorage();
-
-  }
-
-
-
-  addListToStorage = () => {
-
-    this._calculatorService.setList(this.cards);
-
-  }
-
-
-
-  removeCard = (item: CalculationCard) => {
-
-    var index = this.cards.indexOf(item);
-
-    this.cards.splice(index, 1);
-
-    this.addListToStorage();
-
-  }
 
   private createCalculationCard() {
 

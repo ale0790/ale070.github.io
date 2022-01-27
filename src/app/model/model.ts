@@ -11,3 +11,15 @@ export class CalculationCard {
   teamTwo: string ;
 
 }
+
+
+
+
+export class SimulacaoOdd {
+
+  teamOneWin: number;
+
+  teamTwoWin: number;
+
+  oddTeamTwo: number;
+}
