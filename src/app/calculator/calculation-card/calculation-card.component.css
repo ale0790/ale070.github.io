@@ -1,0 +1,206 @@
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+input[type=number] {
+  -moz-appearance: textfield;
+}
+
+.card-calculation {
+  width: 400px;
+  color: black;
+  border-radius: 10px;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.07),
+    0 2px 4px rgba(3, 3, 3, 0.07),
+    0 4px 8px rgba(0, 0, 0, 0.07),
+    0 8px 16px rgba(0, 0, 0, 0.07),
+    0 16px 32px rgba(0, 0, 0, 0.07),
+    0 32px 64px rgba(0, 0, 0, 0.07);
+  box-sizing: border-box;
+  padding: 20px 20px;
+  position: relative;
+}
+
+.box-inputs-team {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+}
+
+.mat-x {
+  padding: 0;
+  font-weight: 800;
+  font-size: 21px;
+  margin-bottom: 19px;
+
+}
+
+
+.box-inputs-team>.mat-form-field {
+  width: 42%;
+}
+
+
+.buttonDelete {
+  display: flex;
+  justify-content: flex-start;
+}
+
+
+.box-header {
+  display: flex;
+  justify-content: space-between;
+}
+
+
+.input>input {
+  width: 100%;
+  padding: 4px;
+  border-radius: 4px;
+  border: 1px solid black;
+  text-align: right;
+  font-size: 15px;
+}
+
+h2 {
+  margin: 0;
+  width: 10%;
+  font-size: 17px;
+}
+
+.teamtwo {
+
+  color: orange;
+}
+
+.teamone {
+  color: blue;
+}
+
+.box {
+  display: flex;
+  flex-direction: column;
+  width: 400px;
+  margin-right: 25px;
+  margin-bottom: 25px;
+}
+
+
+.row {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  margin-bottom: 17px;
+  align-items: baseline;
+}
+
+
+.row-text {
+
+  font-size: 14px;
+  font-weight: 500;
+  letter-spacing: 0.4px;
+
+}
+
+.row-value {
+  width: 69px;
+  display: flex;
+  justify-content: flex-end;
+  align-items: flex-end;
+  font-size: 14px;
+  padding: 4px;
+  box-sizing: border-box;
+  border-radius: 5px;
+  font-size: 15px;
+}
+
+
+.result {
+
+  background: #53df42;
+
+}
+
+
+.greenvalue {
+  font-weight: 500;
+  color: green;
+}
+
+.redvalue {
+  font-weight: 500;
+  color: red;
+}
+
+.bluevalue {
+  font-weight: 500;
+  color: blue;
+
+}
+
+
+.container-card {
+  padding: 36px 19px;
+  display: flex;
+  flex-direction: row;
+}
+
+
+.box-table {
+  width: calc(100% - 400px);
+}
+
+
+.table-body {
+  display: flex;
+  margin-top: 20px;
+  flex-direction: column;
+}
+
+.row-table {
+  display: flex;
+  justify-content: space-between;
+  margin: 0 -20px;
+}
+
+.row-table>div {
+  text-align: center;
+  flex: 1;
+  border: 1px solid black;
+  font-size: 18px;
+  font-weight: 500;
+  padding: 5px 0;
+  border-top: inset;
+}
+
+.row-header {
+  display: flex;
+  justify-content: space-between;
+  font-size: 15px;
+  font-weight: 500;
+  margin: -20px;
+}
+
+.row-header>div {
+  flex: 1;
+
+  text-align: center;
+  padding: 9px 20px;
+}
+
+.table-odd {
+  color: black;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.07),
+    0 2px 4px rgba(3, 3, 3, 0.07),
+    0 4px 8px rgba(0, 0, 0, 0.07),
+    0 8px 16px rgba(0, 0, 0, 0.07),
+    0 16px 32px rgba(0, 0, 0, 0.07),
+    0 32px 64px rgba(0, 0, 0, 0.07);
+  box-sizing: border-box;
+  padding: 20px 20px;
+}
