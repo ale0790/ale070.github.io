@@ -26,7 +26,7 @@
 
 .img-logo {
   margin-left: 15px;
-  height: 33px;
+  height: 106px;
   margin-bottom: 13px;
 }
 
@@ -38,6 +38,5 @@
   display: flex;
   justify-content: center;
   background-size: cover;
-  background-image: url(../../../assets/images/3139154.jpg);
-  background-repeat: no-repeat;
+  background-image: linear-gradient(135deg, green, lightgreen, darkblue);
 }

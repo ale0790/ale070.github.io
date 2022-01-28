@@ -135,9 +135,9 @@ export class CalculationCardComponent implements AfterViewInit, OnInit {
 
       item.oddTeamTwo = odd;
 
-      item.teamOneWin = this.calculation.valueBetTeamOne + ((odd * this.calculation.valueBetTeamOne) - this.calculation.valueBetTeamOne) - this.totalAposta;
+      item.teamOneWin = this.calculation.valueBetTeamOne + ((this.calculation.oddTeamOne * this.calculation.valueBetTeamOne) - this.calculation.valueBetTeamOne) - this.totalAposta;
 
-      item.teamTwoWin = this.calculation.valueBetTeamTwo + ((odd * this.calculation.valueBetTeamTwo) - this.calculation.valueBetTeamOne) - this.totalAposta;
+      item.teamTwoWin = this.calculation.valueBetTeamTwo + ((odd * this.calculation.valueBetTeamTwo) - this.calculation.valueBetTeamTwo) - this.totalAposta;
 
 
       this.listOddSimulacao.push(item);

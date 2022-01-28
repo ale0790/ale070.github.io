@@ -64,23 +64,7 @@
 
       <mat-divider></mat-divider>
 
-      <div class="row">
-        <span class="row-text ">Valor Aposta <b class="teamone">{{calculation.teamOne}}</b></span>
 
-        <div class="row-value input">
-          {{calculation.valueBetTeamOne | number : pipe(calculation.valueBetTeamOne )}}
-        </div>
-
-      </div>
-      <div class="row">
-        <span class="row-text">Ganho individual <b class="teamone">{{calculation.teamOne}}</b></span>
-
-        <div [class]="'row-value ' + getValueClass(ganhoIndividualTimeUm)">
-
-          {{ganhoIndividualTimeUm | number : pipe(ganhoIndividualTimeUm)}}
-        </div>
-
-      </div>
       <div class="row">
         <span class="row-text">ODD <b class="teamtwo">{{calculation.teamTwo}}</b></span>
 
@@ -97,18 +81,6 @@
 
         <div class="row-value input">
           <input #betTeamTwo type="number" [(ngModel)]="calculation.valueBetTeamTwo">
-        </div>
-
-      </div>
-
-
-      <div class="row">
-
-        <span class="row-text">Ganho individual <b class="teamtwo">{{calculation.teamTwo}}</b></span>
-
-        <div [class]="'row-value ' + getValueClass(ganhoIndividualTimeDois)">
-
-          {{ganhoIndividualTimeDois | number : pipe(ganhoIndividualTimeDois)}}
         </div>
 
       </div>
